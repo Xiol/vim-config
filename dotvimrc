@@ -1,0 +1,177 @@
+set nocompatible
+set background=dark
+set t_Co=256         " Force 256 colours
+set encoding=utf-8
+set ignorecase
+set smartcase
+set wrap
+set showbreak=^
+set showmatch
+set autoread
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set smarttab
+set expandtab
+set autoindent
+set smartindent
+set number
+set backspace=indent,eol,start
+set laststatus=2
+
+" Vundle Setup
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'BusyBee'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'fatih/vim-go'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'majutsushi/tagbar'
+Plugin 'ervandew/supertab'
+Plugin 'klen/python-mode'
+Plugin 'bling/vim-airline'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'smerrill/vcl-vim-plugin'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+
+call vundle#end()
+filetype plugin indent on
+syntax on
+" End Vundle Setup
+
+" Mappings
+nnoremap ; :
+map <leader>p :set paste!<CR>i
+map <leader>c ^i#<ESC>j
+" Remove blank lines
+map <leader>b <ESC>:g/^$/d<CR>
+" Strip comments
+map <leader>s <ESC>:g/^#/d<CR>:g/^$/d<CR>
+" Open NERDTree
+map <leader>n <ESC>:NERDTree<CR>
+
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+
+" Load ctags
+set tags=./tags;/
+
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
+
+"let g:Powerline_theme='solarized256'
+"let g:Powerline_colorscheme='solarized'
+
+" Fix GitGutter column when using Solarized
+highlight clear SignColumn
+
+" tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" neocomplete
+let g:neocomplete#enable_at_startup = 1
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+if has("gui_running")
+    set guifont=Inconsolata\ 10
+    let g:solarized_contrast="high"
+    let g:solarized_visibility="high"
+    set background=light
+    colorscheme BusyBee
+    set lines=35
+    set columns=115
+    set clipboard=unnamed
+else
+    let g:solarized_contrast="high"
+    let g:solarized_visibility="high"
+    set background=light
+    silent! colorscheme BusyBee
+endif
+
+"Enable spellcheck for .txt files -- disabled because it's annoying
+"au BufEnter,BufNew *.txt set spell spelllang=en_gb
+set spelllang=en_gb
+
+" Completion adjustments
+set ofu=syntaxcomplete#Complete
+"set completeopt=longest,menuone
+set completeopt=menu
+
+" Powerline options
+let g:Powerline_symbols='compatible'
+set noshowmode
+
+" PHP options
+au FileType php set omnifunc=phpcomplete#CompletePHP
+let php_sql_query=1
+let php_htmlInStrings=1
+
+" Python options
+let python_highlight_all=1
+au FileType python set omnifunc=pythoncomplete#Complete
+au FileType python set completeopt=menuone,longest
+
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" Python-mode settings
+let g:pymode_folding = 0
+let g:pymode_lint_mccabe_complexity = 200
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_ignore = "E501"
+let g:pymode_rope = 0
+let g:pymode_doc = 0
+
+" Per file options
+au Filetype sh setlocal ts=2 sts=2 sw=2
+au BufRead,BufNewFile /etc/nginx/nginx.conf set ft=nginx
+au BufRead,BufNewFile /etc/nginx/conf.d/* set ft=nginx
+au BufRead,BufNewFile *.vcl set ft=vcl
+au BufRead,BufNewFile *.jinja2 set ft=jinja
+au BufRead,BufNewFile *.j2 set ft=jinja
+au BufRead,BufNewFile *.rst set tw=80 ts=3 sts=3 sw=3 spell spelllang=en_gb
+
+" Go support for tagbar
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+    \ }
+
+
