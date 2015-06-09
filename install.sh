@@ -36,7 +36,7 @@ if grep -q "Valloric/YouCompleteMe" "$HOME/.vimrc"; then
         if [[ -e /etc/debian_version ]]; then
           echo "Detected Debian-family distro."
           echo "Need to install build-essential, CMake and python-dev. Please enter sudo password:"
-          sudo apt-get install build-essential CMake python-dev
+          sudo apt-get -y install build-essential CMake python-dev
         elif [[ -e /etc/redhat-release ]]; then
           echo "Detected RHEL-family distro."
           echo "Need to install Development Tools, cmake and python-devel. This will install a fair"
@@ -47,8 +47,8 @@ if grep -q "Valloric/YouCompleteMe" "$HOME/.vimrc"; then
           else
             YUM="/usr/bin/yum"
           fi
-          sudo $YUM groupinstall "Development Tools"
-          sudo $YUM install cmake python-devel
+          sudo $YUM -y groupinstall "Development Tools"
+          sudo $YUM -y install cmake python-devel
         fi
         ./install.sh --clang-completer --gocode-completer
         echo "YCM done."
