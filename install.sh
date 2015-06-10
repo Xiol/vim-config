@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ ! -d dotvim || ! -e dotvimrc ]]; then
+if [[ ! -e dotvimrc ]]; then
   echo "You have to execute this from the same directory as the config files."
   exit 1
 fi
@@ -16,10 +16,9 @@ if [[ ! -x /usr/bin/git ]]; then
 fi
 
 cp dotvimrc "$HOME/.vimrc"
-cp -r dotvim "$HOME/.vim"
 
 if [[ ! -d "$HOME/.vim/bundle" ]]; then
-  mkdir "$HOME/.vim/bundle"
+  mkdir -p "$HOME/.vim/bundle"
 fi
 
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
