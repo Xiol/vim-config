@@ -52,7 +52,7 @@ if grep -q "Valloric/YouCompleteMe" "$HOME/.vimrc"; then
           echo "Detected OSX, installing CMake with brew."
           brew install CMake
         fi
-        ./install.sh --clang-completer --gocode-completer
+        ./install.py --clang-completer --gocode-completer
         echo "YCM done."
         break
         ;;
