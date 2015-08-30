@@ -48,6 +48,9 @@ if grep -q "Valloric/YouCompleteMe" "$HOME/.vimrc"; then
           fi
           sudo $YUM -y groupinstall "Development Tools"
           sudo $YUM -y install cmake python-devel
+        elif [[ $(uname) == 'Darwin' ]]; then
+          echo "Detected OSX, installing CMake with brew."
+          brew install CMake
         fi
         ./install.sh --clang-completer --gocode-completer
         echo "YCM done."
