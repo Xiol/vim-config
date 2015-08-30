@@ -37,6 +37,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'smerrill/vcl-vim-plugin'
 Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'kchmck/vim-coffee-script'
 
 call vundle#end()
 filetype plugin indent on
