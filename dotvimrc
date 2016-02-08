@@ -108,6 +108,16 @@ set ofu=syntaxcomplete#Complete
 "set completeopt=longest,menuone
 set completeopt=menu
 
+" Go options (make sure you run :GoInstallBinaries!)
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+
 " Powerline options
 let g:Powerline_symbols='compatible'
 set noshowmode
