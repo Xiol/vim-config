@@ -57,7 +57,9 @@ if grep -q "Valloric/YouCompleteMe" "$HOME/.vimrc"; then
         break
         ;;
       No)
-        echo "Vim will likely throw errors on startup until you complete YCM installation or remove the Plugin."
+        sed -i "/YouCompleteMe/c\"Plugin 'Valloric/YouCompleteMe'" "$HOME/.vimrc"
+        vim +VundleClean\! +qall
+        echo "YCM has been removed from your installation to prevent errors on vim startup."
         break
         ;;
     esac
