@@ -22,24 +22,24 @@ set laststatus=2
 " Vundle Setup
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'BusyBee'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'fatih/vim-go'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'majutsushi/tagbar'
-Plugin 'ervandew/supertab'
-Plugin 'klen/python-mode'
-Plugin 'bling/vim-airline'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'evanmiller/nginx-vim-syntax'
-Plugin 'smerrill/vcl-vim-plugin'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'kchmck/vim-coffee-script'
+Plug 'gmarik/Vundle.vim'
+Plug 'BusyBee'
+Plug 'altercation/vim-colors-solarized'
+Plug 'fatih/vim-go'
+Plug 'airblade/vim-gitgutter'
+Plug 'majutsushi/tagbar'
+Plug 'ervandew/supertab'
+Plug 'klen/python-mode'
+Plug 'bling/vim-airline'
+Plug 'Valloric/YouCompleteMe'
+Plug 'evanmiller/nginx-vim-syntax'
+Plug 'smerrill/vcl-vim-plugin'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'kchmck/vim-coffee-script'
 
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 syntax on
 " End Vundle Setup

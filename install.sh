@@ -17,13 +17,10 @@ fi
 
 cp dotvimrc "$HOME/.vimrc"
 
-if [[ ! -d "$HOME/.vim/bundle" ]]; then
-  mkdir -p "$HOME/.vim/bundle"
-fi
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-vim +VundleInstall +qall
+vim +PlugInstall +qall
 sed -i 's/silent! //' "$HOME/.vimrc"
 
 if grep -q "Valloric/YouCompleteMe" "$HOME/.vimrc"; then
