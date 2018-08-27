@@ -25,7 +25,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
 
 Plug 'gmarik/Vundle.vim'
-Plug 'BusyBee'
+Plug 'vim-scripts/BusyBee'
 Plug 'altercation/vim-colors-solarized'
 Plug 'fatih/vim-go'
 Plug 'airblade/vim-gitgutter'
