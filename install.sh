@@ -28,23 +28,19 @@ if grep -q "Valloric/YouCompleteMe" "$HOME/.vimrc"; then
   select yn in "Yes" "No"; do
     case $yn in
       Yes) 
-        cd "$HOME/.vim/bundle/YouCompleteMe"
+        cd "$HOME/.vim/plugged/YouCompleteMe"
         if [[ -e /etc/debian_version ]]; then
           echo "Detected Debian-family distro."
           echo "Need to install build-essential, CMake and python-dev. Please enter sudo password:"
           sudo apt-get -y install build-essential CMake python-dev
         elif [[ -e /etc/redhat-release ]]; then
           echo "Detected RHEL-family distro."
-          echo "Need to install Development Tools, cmake and python-devel. This will install a fair"
-          echo "amount of potentially unnecessary packages, so you might want to CTRL+C and manually"
-          echo "install if you don't want/need the Dev Tools group installed."
           if [[ -x /usr/bin/dnf ]]; then
             YUM="/usr/bin/dnf"
           else
             YUM="/usr/bin/yum"
           fi
-          sudo $YUM -y groupinstall "Development Tools"
-          sudo $YUM -y install cmake python-devel
+          sudo $YUM -y install cmake python-devel gcc-g++
         elif [[ $(uname) == 'Darwin' ]]; then
           echo "Detected OSX, installing CMake with brew."
           brew install CMake
